@@ -1,8 +1,9 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Times New Roman, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #B59410;
+    text-align: center;
+    background-color: #000000;
 }
 
 header {
