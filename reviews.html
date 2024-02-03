@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesreviews.css">
+    <title>Dining Reviews</title>7
+    <style>
+        body {
+            font-family: Lato, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #8C730C;
+            text-align: center;
+        }
+
+        .reviews-container {
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        .review {
+            border: 1px solid #8C730C;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .review h3 {
+            margin-bottom: 5px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+        }
+
+        .rating span {
+            margin-right: 5px;
+        }
+
+        input[type="text"],
+        select,
+        textarea,
+        input[type="submit"] {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+<button id="backButton">Back to Home</button>
+<button id="hoursButton">Hours</button>
+<button id="backToTopBtn" onclick="scrollToTop()">Back to Top</button>
+
+<script>
+    // Back button functionality
+    document.getElementById("backButton").addEventListener("click", function () {
+        window.location.href = "index.html";
+    });
+</script>
+
+</body>
+</html>
+
+    <h1>Restaurant Reviews</h1>
+
+    <div class="reviews-container">
+        <h2>Add Your Review</h2>
+        <form id="reviewForm">
+            <label for="restaurantName">Dining Location:</label>
+            <select id="restaurantName" required>
+                <option value="The Restaurant at Kellogg Ranch">The Restaurant at Kellogg Ranch</option>
+                <option value="The Vista Market">The Vista Market</option>
+                <option value="Starbucks">Starbucks</option>
+                <option value="Panda Express">Panda Express</option>
+                <option value="Subway">Subway</option>
+                <option value="Carl's Jr">Carl's Jr</option>
+                <option value="Round Table Pizza">Round Table Pizza</option>
+                <option value="Qdoba Mexican Eats">Qdoba Mexican Eats</option>
+                <option value="Polly Trolly Express">Polly Trolly Express</option>
+                <option value="Poly Trolley 2">Poly Trolley 2</option>
+                <option value="ENV Cafe">ENV Cafe</option>
+                <option value="Intergrounds Coffee">Intergrounds Coffee</option>
+                <option value="Bric Break">Bric Break</option>
+                <option value="Saddles">Saddles</option>
+                <option value="Hibachi">Hibachi</option>
+                <option value="Element Coffee and Food">Element Coffee and Food</option>
+                <option value="Innovation Brew Works">Innovation Brew Works</option>
+                <option value="Lollicup">Lollicup</option>
+                <option value="Fitbites">Fitbites</option>
+                <option value="Sushi Bar">Sushi Bar</option>
+                <option value="Poly Fresh Market">Poly Fresh Market</option>
+                <option value="Pony Express">Pony Express</option>
+                <option value="H-Cafe">H-Cafe</option>
+                <option value="Fresh Escape">Fresh Escape</option>
+                <option value="Centerpointe">Centerpointe</option>
+            </select>
+
+            <label for="rating">Rating:</label>
+            <select id="rating" required>
+                <option value="1">1 star</option>
+                <option value="2">2 stars</option>
+                <option value="3">3 stars</option>
+                <option value="4">4 stars</option>
+                <option value="5">5 stars</option>
+            </select>
+
+            <label for="comment">Comment:</label>
+            <textarea id="comment" rows="4" required></textarea>
+
+            <input type="submit" value="Submit Review">
+        </form>
+    </div>
+
+    <div class="reviews-container" id="reviews">
+        <h2>Latest Reviews</h2>
+</script>
+        <!-- Reviews will be displayed here dynamically using JavaScript -->
+    </div>
+
+    <script>
+        // JavaScript for handling form submission and displaying reviews
+        document.getElementById('reviewForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Get user inputs
+            var restaurantName = document.getElementById('restaurantName').value;
+            var rating = document.getElementById('rating').value;
+            var comment = document.getElementById('comment').value;
+
+            // Create a new review object
+            var review = {
+                restaurantName: restaurantName,
+                rating: rating,
+                comment: comment
+            };
+
+            // Save the review to local storage
+            var reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+            reviews.push(review);
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+
+            // Display the latest reviews
+            displayReviews();
+        });
+
+        // Function to display reviews
+        function displayReviews() {
+            var reviewsContainer = document.getElementById('reviews');
+            var reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+
+            reviewsContainer.innerHTML = ''; // Clear previous reviews
+
+            if (reviews.length === 0) {
+                reviewsContainer.innerHTML = '<p>No reviews yet.</p>';
+            } else {
+                reviews.forEach(function (review) {
+                    var reviewElement = document.createElement('div');
+                    reviewElement.classList.add('review');
+
+                    var ratingStars = '⭐'.repeat(Number(review.rating));
+                    var ratingElement = document.createElement('div');
+                    ratingElement.classList.add('rating');
+                    ratingElement.innerHTML = '<span>Rating:</span>' + ratingStars;
+
+                    reviewElement.innerHTML = '<h3>' + review.restaurantName + '</h3>' +
+                        ratingElement.outerHTML +
+                        '<p>' + review.comment + '</p>';
+
+                    reviewsContainer.appendChild(reviewElement);
+                });
+            }
+        }
+
+        // Initial display of reviews when the page loads
+        displayReviews();
+    // Back button functionality
+    document.getElementById("backButton").addEventListener("click", function () {
+        window.location.href = "index.html";
+    });
+
+    // Hours button functionality
+    document.getElementById("hoursButton").addEventListener("click", function () {
+        window.location.href = "timings.html";
+    });
+
+// Back to Top button functionality
+var backToTopBtn = document.getElementById("backToTopBtn");
+
+window.onscroll = function () {
+    scrollFunction();
+};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        backToTopBtn.style.display = "block";
+    } else {
+        backToTopBtn.style.display = "none";
+    }
+}
+
+function scrollToTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
+    </script>
+
+</body>
+</html>

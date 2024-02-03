@@ -1,0 +1,137 @@
+body {
+    font-family: Lato, sans-serif;
+    margin: 20px;
+    background-color: #000000;
+}
+
+h1, h2 {
+    color: #f4f4f4; /* white */
+}
+
+.reviews-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #013220; /* Dark Green */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: grid;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+    color: #f4f4f4; /* White */
+}
+
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #8C730C; /* Dark Gold */
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #f4f4f4;
+    background-color: #013220; /* Dark Green */
+}
+
+select {
+    appearance: none;
+    background: url('data:image/svg+xml;utf8,<svg fill="%238C730C" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center/15px auto;
+    color: #8C730C;
+}
+
+input[type="submit"] {
+    background-color: #8C730C; /* Dark Gold */
+    color: #f4f4f4;
+    cursor: pointer;
+    color: #f4f4f4;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #8C730C; /* Dark Gold */
+}
+
+.review {
+    border: 1px solid #8C730C; /* Dark Gold */
+    color: #f4f4f4;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: #000000; /* Black */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    color: #f4f4f4; /* black */
+    font-size: 18px;
+}
+
+.rating span {
+    margin-right: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    form {
+        grid-template-columns: 1fr;
+    }
+}
+
+#backButton {
+    background-color: #013220;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#backButton:hover {
+    background-color: #006400; /* Darker Green on hover */
+}
+
+#hoursButton {
+    background-color: #013220;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#hourxButton:hover {
+    background-color: #006400; /* Darker Green on hover */
+}
+
+#backToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #8C730C; /* Dark Gold */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#backToTopBtn:hover {
+    background-color: #6d5f0c; /* Darker Gold on hover */
+}

@@ -1,0 +1,84 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 20px;
+    background-color: #000000;
+}
+
+h1 {
+    color: #8C730C;
+    text-align: center;
+}
+
+.hours-container {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.restaurant {
+    border: 1px solid #f4f4f4;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: #013220;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.restaurant h2 {
+    color: #8C730C;
+}
+
+.restaurant h3 {
+    color: #f4f4f4;
+}
+
+.restaurant p {
+    color: #f4f4f4;
+}
+
+#backButton {
+    background-color: #013220;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+#backButton:hover {
+    background-color: #006400;
+}
+
+#reviewsButton {
+    background-color: #013220;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+#reviewsButton:hover {
+    background-color: #006400;
+}
+
+#backToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #8C730C; /* Dark Gold */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#backToTopBtn:hover {
+    background-color: #6d5f0c; /* Darker Gold on hover */
+}
