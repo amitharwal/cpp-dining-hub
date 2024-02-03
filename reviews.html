@@ -137,56 +137,41 @@
                 comment: comment
             };
 
-            // Send the review data to the server using AJAX
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'submitReview.php', true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    // Display the latest reviews after a successful submission
-                    displayReviews();
-                }
-            };
-            xhr.send(JSON.stringify(review));
+            // Save the review to local storage
+            var reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+            reviews.push(review);
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+
+            // Display the latest reviews
+            displayReviews();
         });
 
         // Function to display reviews
         function displayReviews() {
-            // Fetch reviews from the server (you can use AJAX here)
-            fetch('reviews.json')
-                .then(response => response.json())
-                .then(reviews => {
-                    var reviewsContainer = document.getElementById('reviews');
-                    reviewsContainer.innerHTML = ''; // Clear previous reviews
+            var reviewsContainer = document.getElementById('reviews');
+            var reviews = JSON.parse(localStorage.getItem('reviews')) || [];
 
-                    if (reviews.length === 0) {
-                        reviewsContainer.innerHTML = '<p>No reviews yet.</p>';
-                    } else {
-                        reviews.forEach(function (review) {
-                            var reviewElement = document.createElement('div');
-                            reviewElement.classList.add('review');
+            reviewsContainer.innerHTML = ''; // Clear previous reviews
 
-                            var ratingStars = '⭐'.repeat(Number(review.rating));
-                            var ratingElement = document.createElement('div');
-                            ratingElement.classList.add('rating');
-                            ratingElement.innerHTML = '<span>Rating:</span>' + ratingStars;
+            if (reviews.length === 0) {
+                reviewsContainer.innerHTML = '<p>No reviews yet.</p>';
+            } else {
+                reviews.forEach(function (review) {
+                    var reviewElement = document.createElement('div');
+                    reviewElement.classList.add('review');
 
-                            reviewElement.innerHTML = '<h3>' + review.restaurantName + '</h3>' +
-                                ratingElement.outerHTML +
-                                '<p>' + review.comment + '</p>' +
-                                '<button class="remove-review-btn" onclick="removeReview(' + reviews.indexOf(review) + ')">Remove Review</button>';
+                    var ratingStars = '⭐'.repeat(Number(review.rating));
+                    var ratingElement = document.createElement('div');
+                    ratingElement.classList.add('rating');
+                    ratingElement.innerHTML = '<span>Rating:</span>' + ratingStars;
 
-                            reviewsContainer.appendChild(reviewElement);
-                        });
-                    }
-                })
-                .catch(error => console.error('Error fetching reviews:', error));
-        }
+                    reviewElement.innerHTML = '<h3>' + review.restaurantName + '</h3>' +
+                    ratingElement.outerHTML +
+                    '<p>' + review.comment + '</p>';
 
-        // Function to remove a review
-        function removeReview(index) {
-            // You can implement review removal logic on the server side
-            console.log('Remove review:', index);
+                    reviewsContainer.appendChild(reviewElement);
+                });
+            }
         }
 
         // Initial display of reviews when the page loads
